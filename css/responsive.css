@@ -1,0 +1,449 @@
+/* ==========================================================================
+   UZURI PROD — ADAPTATIONS RESPONSIVE MOBILE-FIRST
+   Breakpoints standards (alignés sur les normes Bootstrap) :
+   - Petit mobile : < 576px
+   - Tablette : < 768px
+   - Ordinateur portable / Écran moyen : < 992px
+   - Grand écran : >= 1200px
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. TABLETTES ET ÉCRANS MOYENS (max-width: 991px)
+   Bascule de la navigation desktop vers le menu mobile plein écran / tiroir
+   -------------------------------------------------------------------------- */
+@media (max-width: 991px) {
+  /* Le bouton menu hamburger devient visible */
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  /* La navigation principale se transforme en tiroir mobile */
+  .site-nav {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    background-color: rgba(5, 5, 5, 0.98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: var(--space-xl) var(--space-md);
+    gap: var(--space-lg);
+    border-bottom: 2px solid var(--uzuri-yellow);
+    transform: translateY(-110%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform var(--transition-base), opacity var(--transition-base), visibility var(--transition-base);
+    overflow-y: auto;
+  }
+
+  /* État ouvert du menu mobile */
+  .site-nav.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .site-nav-list {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    width: 100%;
+  }
+
+  .site-nav-link {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .site-header-actions {
+    display: none; /* Déplacé à l'intérieur du menu déroulant sur mobile si besoin */
+  }
+
+  .site-nav .mobile-cta {
+    display: inline-flex;
+    width: 100%;
+    max-width: 300px;
+    margin-top: var(--space-sm);
+  }
+
+  /* Animation des barres du bouton burger quand ouvert */
+  .menu-toggle.is-active .menu-toggle-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .menu-toggle.is-active .menu-toggle-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.is-active .menu-toggle-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Réorganisation du footer sur tablette */
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. MOBILES (max-width: 576px)
+   Optimisation de l'ergonomie tactile et des textes
+   -------------------------------------------------------------------------- */
+@media (max-width: 576px) {
+  :root {
+    --header-height: 70px;
+  }
+
+  .container {
+    padding-inline: var(--space-sm);
+  }
+
+  .section {
+    padding-block: var(--space-lg);
+  }
+
+  .section-header {
+    margin-bottom: var(--space-md);
+  }
+
+  .section-description {
+    font-size: var(--text-base);
+  }
+
+  /* Boutons tactiles généreux */
+  .btn {
+    width: 100%;
+    padding: 0.95rem 1.4rem;
+    font-size: var(--text-base);
+  }
+
+  /* Footer en une colonne empilée */
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    text-align: left;
+  }
+
+  .footer-brand {
+    border-bottom: 1px solid var(--uzuri-charcoal-light);
+    padding-bottom: var(--space-md);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  /* Bouton WhatsApp ajusté sur petit mobile */
+  .floating-whatsapp {
+    bottom: 18px;
+    right: 18px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .floating-whatsapp svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* ---- Page À Propos sur mobile ---- */
+  .about-story-grid,
+  .about-uzuri-grid,
+  .mission-vision-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .uzuri-meanings {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .about-quote {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .vision-com-title {
+    font-size: 1.4rem;
+  }
+
+  /* ---- Hero sur mobile ---- */
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  /* Photo en premier sur mobile pour l'impact visuel immédiat */
+  .hero-visual {
+    order: -1;
+  }
+
+  .hero-photo {
+    height: 300px;
+    object-position: center 20%;
+  }
+
+  /* Ligne de chiffres masquée sur petit mobile pour ne pas surcharger */
+  .hero-trust-row,
+  .hero-trust-divider {
+    display: none;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* ---- Section Problème sur mobile ---- */
+  .problem-inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .problem-contrast {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .problem-contrast-arrow {
+    transform: rotate(90deg);
+    justify-self: center;
+  }
+
+  /* ---- Section Solution sur mobile ---- */
+  .solution-inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .solution-quote {
+    position: static;
+  }
+
+  .solution-pillars {
+    grid-template-columns: 1fr;
+  }
+
+  /* ---- Section Méthode sur mobile ---- */
+  .process-list {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  /* ---- CTA Final sur mobile ---- */
+  .final-cta-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .final-cta-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .final-cta-direct {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  /* ---- Page Services sur mobile ---- */
+  .services-hero {
+    padding-top: var(--space-lg);
+    padding-bottom: var(--space-lg);
+  }
+
+  .services-hero-title {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+
+  .services-hero-subtitle {
+    font-size: var(--text-base);
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .service-card--featured {
+    grid-column: span 1;
+  }
+
+  .service-card--featured .service-title {
+    font-size: var(--text-xl);
+  }
+
+  .services-process-list {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .services-help-title {
+    font-size: 1.2rem;
+  }
+
+  /* ---- Page Portfolio sur mobile ---- */
+  .portfolio-hero {
+    padding-top: var(--space-lg);
+    padding-bottom: var(--space-lg);
+  }
+
+  .portfolio-hero-title {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+
+  .portfolio-hero-subtitle {
+    font-size: var(--text-base);
+  }
+
+  .portfolio-filters {
+    gap: var(--space-2xs);
+  }
+
+  .portfolio-filter {
+    padding: 0.5rem 1rem;
+    font-size: var(--text-xs);
+  }
+
+  .portfolio-cta-title {
+    font-size: 1.2rem;
+  }
+
+  .portfolio-services-title {
+    font-size: 1.1rem;
+  }
+
+  /* ---- Page Équipe sur mobile ---- */
+  .team-hero {
+    padding-top: var(--space-lg);
+    padding-bottom: var(--space-lg);
+  }
+
+  .team-hero-title {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+
+  .team-hero-subtitle {
+    font-size: var(--text-base);
+  }
+
+  .team-skills-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .team-process-list {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .team-conclusion-title {
+    font-size: 1.2rem;
+  }
+
+  /* ---- Grilles homepage sur mobile ---- */
+  .portfolio-grid--home {
+    grid-template-columns: 1fr;
+  }
+
+  .team-grid--home {
+    grid-template-columns: 1fr;
+  }
+
+  /* ---- Grille équipe page sur mobile ---- */
+  .team-grid--page {
+    grid-template-columns: 1fr;
+  }
+
+  /* ---- Page Contact sur mobile ---- */
+  .contact-hero {
+    padding-top: var(--space-lg);
+    padding-bottom: var(--space-md);
+  }
+
+  .contact-hero-title {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .contact-whatsapp-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .contact-form-wrapper {
+    padding: var(--space-md);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. BREAKPOINT TABLETTE INTERMÉDIAIRE (max-width: 767px)
+   Ajustements pour les grilles 2 colonnes avant le passage en 1 colonne
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+
+  .problem-inner,
+  .solution-inner,
+  .about-story-grid,
+  .about-uzuri-grid,
+  .mission-vision-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  /* Méthode : 2 colonnes sur tablette (6 étapes = 3 lignes de 2) */
+  .process-list {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+  }
+
+  /* ---- Page Services sur tablette ---- */
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .service-card--featured {
+    grid-column: span 1;
+  }
+
+  .services-process-list {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+  }
+
+  /* ---- Grilles homepage sur tablette ---- */
+  .portfolio-grid--home {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .team-grid--home {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* ---- Page Contact sur tablette ---- */
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+  }
+
+}
